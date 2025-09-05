@@ -190,13 +190,15 @@ function showPurchaseModal(watchId) {
     if (!watch || !isAvailable(watch.rawPrice)) return;
     
     selectedWatch = watch;
+    const watchInfo = extractWatchInfo(watch.description);
     
     const content = document.getElementById('purchaseContent');
     content.innerHTML = `
         <div style="text-align: center; margin-bottom: 20px;">
             <div style="font-size: 48px; margin-bottom: 12px;">⌚</div>
-            <h4>${watch.description}</h4>
-            ${watch.notes ? `<p style="color: var(--tg-theme-hint-color, #999999); margin: 8px 0;">${watch.notes}</p>` : ''}
+            <h4 style="margin-bottom: 8px;">${watchInfo.title}</h4>
+            ${watchInfo.details ? `<p style="color: var(--tg-theme-hint-color, #999999); margin: 4px 0; font-size: 14px;">${watchInfo.details}</p>` : ''}
+            ${watch.notes ? `<p style="color: var(--tg-theme-hint-color, #999999); margin: 8px 0; font-style: italic; border-top: 1px solid var(--tg-theme-hint-color, #ddd); padding-top: 8px;">${watch.notes}</p>` : ''}
             <div style="font-size: 24px; font-weight: 700; color: var(--tg-theme-button-color, #007AFF); margin-top: 12px;">
                 ${formatPrice(watch.price, watch.rawPrice)}
             </div>
@@ -215,13 +217,15 @@ function showOfferModal(watchId) {
     if (!watch || !isAvailable(watch.rawPrice)) return;
     
     selectedWatch = watch;
+    const watchInfo = extractWatchInfo(watch.description);
     
     const content = document.getElementById('offerContent');
     content.innerHTML = `
         <div style="text-align: center; margin-bottom: 20px;">
             <div style="font-size: 48px; margin-bottom: 12px;">⌚</div>
-            <h4>${watch.description}</h4>
-            ${watch.notes ? `<p style="color: var(--tg-theme-hint-color, #999999); margin: 8px 0;">${watch.notes}</p>` : ''}
+            <h4 style="margin-bottom: 8px;">${watchInfo.title}</h4>
+            ${watchInfo.details ? `<p style="color: var(--tg-theme-hint-color, #999999); margin: 4px 0; font-size: 14px;">${watchInfo.details}</p>` : ''}
+            ${watch.notes ? `<p style="color: var(--tg-theme-hint-color, #999999); margin: 8px 0; font-style: italic; border-top: 1px solid var(--tg-theme-hint-color, #ddd); padding-top: 8px;">${watch.notes}</p>` : ''}
             <div style="font-size: 20px; font-weight: 600; color: var(--tg-theme-hint-color, #999999); margin-top: 12px;">
                 Listed at: ${formatPrice(watch.price, watch.rawPrice)}
             </div>
